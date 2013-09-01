@@ -32,9 +32,10 @@ termdeco.Println(termdeco.Red("decorated").BgGreen().Bold())
 It prints "decorated" as red, bold text (on Windows, bold is translated into
 text brighter) on green background.
 
-For more detail, refer godoc
+For more detail, refer [godoc][godoc]
 
 ## License
 termdeco is under MIT License. See the [LICENSE][license] file for details.
 
+[godoc]: http://godoc.org/github.com/tatsushid/termdeco
 [license]: https://github.com/tatsushid/termdeco/blob/master/LICENSE
