@@ -198,11 +198,12 @@ func printEscString(f *os.File, str string) (n int, err error) {
 		defaultAttr = stderrDefaultAttr
 	}
 
-	end := len(str)
+	runes := []rune(str)
+	end := len(runes)
 	printStr := ""
 	for i := 0; i < end; {
-		for i < end && str[i] != keyEscape {
-			printStr += string(str[i])
+		for i < end && runes[i] != keyEscape {
+			printStr += string(runes[i])
 			i++
 		}
 		if i >= end {
@@ -213,8 +214,8 @@ func printEscString(f *os.File, str string) (n int, err error) {
 			}
 			break
 		}
-		if str[i+1] != '[' {
-			printStr += string(str[i])
+		if runes[i+1] != '[' {
+			printStr += string(runes[i])
 			i++
 			continue
 		}
@@ -228,12 +229,12 @@ func printEscString(f *os.File, str string) (n int, err error) {
 
 		seq := make([]byte, 0)
 		attr := word(0)
-		for i < end && str[i] != 'm' {
-			if str[i] == ';' {
+		for i < end && runes[i] != 'm' {
+			if runes[i] == ';' {
 				attr = addAttrOfSeq(attr, defaultAttr, seq)
 				seq = make([]byte, 0)
 			} else {
-				seq = append(seq, byte(str[i]))
+				seq = append(seq, byte(runes[i]))
 			}
 			i++
 		}
